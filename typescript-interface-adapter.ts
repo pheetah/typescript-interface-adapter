@@ -3,15 +3,15 @@ interface Mappings<T>{
     apply?: (parameter:any) =>any
 }
 
-interface FormValueConverter<T extends object>{
-    convert<K extends object>(
+export interface IInterfaceAdapter{
+    convert<T extends object, K extends object>(
         value:object, 
         mappings:{[key in keyof K]: Mappings<T>}
     ):T
 }
 
-export class ConcreteFormValueConverter<T extends object> implements FormValueConverter<T>{
-    convert<K extends object>(
+export class InterfaceAdapter implements IInterfaceAdapter{
+    convert<T extends object, K extends object>(
         formObject: T, 
         mappings:{[key in keyof K]: Mappings<T>}
     ) : T {
